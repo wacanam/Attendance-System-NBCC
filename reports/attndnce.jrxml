@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="attndnce" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="500b2117-929d-4565-acea-5ef6289f5047">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="65" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="58" height="64" uuid="7f437488-696f-4cc9-a70f-c47272eb97e1"/>
+				<imageExpression><![CDATA["C:\\Users\\hp-\\Downloads\\Desktop\\nbcc.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="80" y="0" width="420" height="26" uuid="6231fb5f-05ed-4940-9b76-ccc0092eda24"/>
+				<textElement textAlignment="Justified">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NORTHERN BUKIDNON COMMUNITY COLLEGE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="193" y="26" width="191" height="20" uuid="c152a24e-a58c-473b-9e30-a9b682d58369"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top"/>
+				<text><![CDATA[KIHARE MANOLO FORTICH BUKIDNON]]></text>
+			</staticText>
+			<image>
+				<reportElement x="514" y="1" width="58" height="64" uuid="b5c4159a-73ad-4790-983b-f05ea8f951d4"/>
+				<imageExpression><![CDATA["C:\\Users\\hp-\\Downloads\\Desktop\\sasaasa.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="141" splitType="Stretch">
+			<staticText>
+				<reportElement x="143" y="0" width="271" height="37" uuid="18ddd120-b27d-44a1-a561-a2951f95bed0"/>
+				<textElement>
+					<font size="22"/>
+				</textElement>
+				<text><![CDATA[ATTENDANCE REPORT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="48" width="45" height="20" uuid="d20697e6-ccff-45b0-aef4-22fc58e01daa"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EVENT:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="68" y="48" width="100" height="20" uuid="9160b7e8-4955-42d5-982e-09d9ddfabf81"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="111" width="45" height="20" uuid="47dcf11c-24a9-4bfe-baf7-fd3580efd012"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEM:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="68" y="79" width="100" height="20" uuid="cc6ca325-461c-4250-9087-fce735b73fbd"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="79" width="58" height="20" uuid="79515b72-a13c-40a2-9dc5-8ea0ea0ae81c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUBJECT:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="68" y="111" width="100" height="20" uuid="a1ba76fe-e101-4a37-9661-6ac322f31688"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="369" y="48" width="45" height="20" uuid="1f910307-5748-4aeb-887b-223cba9dc335"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AY:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="369" y="79" width="45" height="20" uuid="7d50c721-ff83-44a8-a1ac-37af8b08eea5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="369" y="111" width="45" height="20" uuid="72a9450c-69c2-40e1-a260-a3d1b7640307"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIME:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="429" y="48" width="100" height="20" uuid="f2661881-0298-4673-aa02-8eb116fc355f"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="429" y="111" width="100" height="20" uuid="655abcac-68fa-4f40-895e-6e4d0ba98c53"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="429" y="79" width="100" height="20" uuid="0a769a87-7639-4cca-947a-dccbc863b643"/>
+				<textFieldExpression><![CDATA[$F{field}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="91" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="58" splitType="Stretch">
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="357" y="0" width="100" height="20" uuid="5637dc37-b6f7-41b9-aff0-c6588570e4b9"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="469" y="0" width="100" height="20" uuid="61e7357a-d9de-4436-9d38-9cb0633f02f9"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="38" width="100" height="20" uuid="689a651a-918d-4769-ba11-d524fa430bcc"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

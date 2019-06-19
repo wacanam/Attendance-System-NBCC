@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="attendance_present_2nd" language="groovy" pageWidth="95" pageHeight="20" columnWidth="95" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="5eb6a8d1-8a1b-4fe0-9906-6f058e412bb3">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="act_name" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select count(stud.`Stud_ID`) as count from tbl_attendance as att
+inner join tbl_activities as act on act.activity_id = att.`ActivityID`
+inner join tbl_subject_events sube on sube.`actID` = act.`activity_Id`
+inner join tbl_section sec on  sube.subject_id = sec.subject_id
+inner join tbl_enrolldetails enroll on enroll.section_id = sec.section_id
+inner join tbl_enrollees enrol on enrol.enrollee_id = enroll.enrollment_id
+inner join tbl_student stud on stud.stud_id = enrol.stud_id
+where stud.stud_id = att.`Stud_ID` and sube.`subject_ID` = sec.subject_id
+and  act.act_name = $P{act_name} and enrol.current_status = 'Second Year']]>
+	</queryString>
+	<field name="count" class="java.lang.Long"/>
+	<detail>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="95" height="20" uuid="db5e4d70-7564-4572-a328-3d570b72384b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{count}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

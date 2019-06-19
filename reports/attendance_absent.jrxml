@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="event" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="7aaf89e9-22ce-4492-b786-e4a3f7c37387">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="dir" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="act_name" class="java.lang.String"/>
+	<parameter name="sem_name" class="java.lang.String"/>
+	<parameter name="ay_name" class="java.lang.String"/>
+	<parameter name="parameter1" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select stud.`Stud_ID`,concat(lastname,',',firstname,' ',substring(middlename,1,1),'.') as 'Student Name',sec.section_id 'Section Name',enrol.current_status 'Current Year',if(ab.`attendanceID`!="",'ATTENDED','ABSENT') as status  from
+tbl_section sec
+inner join tbl_enrolldetails enroll on enroll.section_id = sec.section_id
+inner join tbl_subject_events sube on sube.subject_id = sec.subject_id
+inner join tbl_enrollees enrol on enrol.enrollee_id = enroll.enrollment_id
+inner join tbl_student stud on stud.stud_id = enrol.stud_id
+left outer join tbl_attendance as ab on ab.`Stud_ID` = stud.`Stud_ID` and ab.`ActivityID` = sube.`actID`]]>
+	</queryString>
+	<field name="Stud_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Student Name" class="java.lang.String"/>
+	<field name="Section Name" class="java.lang.String"/>
+	<field name="Current Year" class="java.lang.String"/>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="182" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="83" width="572" height="33" uuid="15d8f90f-bab0-46ea-9831-6e7fcc71b00d"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Attendance Status Report]]></text>
+			</staticText>
+			<image>
+				<reportElement x="514" y="12" width="58" height="64" uuid="154bfb4f-148a-42d5-8e77-a68e201e6c9f"/>
+				<imageExpression><![CDATA[$P{dir}+"images-44.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="83" y="12" width="420" height="26" uuid="01611c53-eea3-48de-ab08-389376f46636"/>
+				<textElement textAlignment="Justified">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NORTHERN BUKIDNON COMMUNITY COLLEGE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="38" width="191" height="20" uuid="341f88a4-413b-4109-9459-bc3952d18314"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top"/>
+				<text><![CDATA[KIHARE MANOLO FORTICH BUKIDNON]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="12" width="58" height="64" uuid="cb92f395-98b9-46cc-b36d-bafbc99ee15d"/>
+				<imageExpression><![CDATA[$P{dir}+"nbcc.png"]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="393" y="155" width="134" height="20" uuid="412d79e4-f41f-4102-9c4e-7405ce97a05a"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ay_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="393" y="135" width="134" height="20" uuid="6f9e5aac-de97-4922-bbf4-6fc6b3091754"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sem_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="135" width="58" height="20" uuid="c6765978-a3d3-49cb-8afc-cbe346e5d9b4"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Act Name:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="58" y="135" width="187" height="20" uuid="5595bcb2-7cca-4e0a-b099-ea26736460fd"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{act_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="343" y="135" width="50" height="20" uuid="7d46b01e-0bf2-4712-b576-f9a16baf5e26"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Semester:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="336" y="155" width="57" height="20" uuid="37dafcbc-083e-4783-a302-3f24aaae355f"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[AY:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="83" height="20" uuid="bbb4c7cb-8c0a-4cd6-9494-12315e688de4"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Stud_ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="83" y="0" width="203" height="20" uuid="a7fc0c12-6a81-4210-b939-4d31827cb5c7"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Student Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="0" width="125" height="20" uuid="2ae6fbc5-2905-4c9b-89b0-aeacd29d35e2"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Section Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="0" width="74" height="20" uuid="7ca275cf-2d24-4d79-9380-ea10dde033a9"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="484" y="0" width="88" height="20" uuid="7477ffc4-ad5c-4016-8922-3607b2a514de"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Current Year]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="83" height="20" uuid="4e5a872a-bfe2-4b38-b748-8c424488147d"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Stud_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="83" y="0" width="203" height="20" uuid="0568a039-216b-42b7-bb8d-3c4a5115a984"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Student Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="411" y="0" width="74" height="20" uuid="0141e4fb-1ed1-4d46-99b2-81f33a61b303"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="484" y="0" width="88" height="20" uuid="fe504faa-9a6c-477a-9418-1a47e6604026"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Current Year}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="0" width="125" height="20" uuid="aed349fd-bb03-4f89-afdf-9944648138be"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Section Name}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="0" width="188" height="20" uuid="656f3c54-2b68-40b1-a95d-8a4bcfd01af5"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="452" y="0" width="80" height="20" uuid="fbffac58-6f07-45e4-a54b-ee811b2add03"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="532" y="0" width="40" height="20" uuid="731c5e6e-8525-4add-b910-e91d5dd4abe7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<lastPageFooter>
+		<band height="80">
+			<staticText>
+				<reportElement x="248" y="28" width="95" height="20" uuid="08003c88-15b3-4ccf-bc45-99145901b6a5"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Total Students:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="248" y="48" width="95" height="20" uuid="d81d55cd-73ea-4ae5-9dbb-5581d27d0ee1"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="28" width="62" height="20" uuid="8a186196-95cf-4354-b9ee-70c73989949c"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[4th Year]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="186" y="48" width="62" height="20" uuid="4bcfe116-ce35-434a-80cf-59e61b37111b"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="28" width="62" height="20" uuid="d83877bc-7725-44cc-9780-55a4ecc8ad04"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[3rd year]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="48" width="62" height="20" uuid="9be580a2-ba18-4525-be34-6dadbe34200c"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="28" width="62" height="20" backcolor="#66CC00" uuid="b427693f-2ff4-41f7-8945-df9a2bf74948"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[1st Year]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="48" width="62" height="20" uuid="3134df51-c7b1-4f63-9c55-cc578d33c8a3"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="28" width="62" height="20" uuid="a92f82b3-4b7a-40b4-a08d-e3e5fb0f8451"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[2nd year]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="62" y="48" width="62" height="20" uuid="d3a85f37-70c1-4a08-bb15-9c1aa375ad72"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="48" width="95" height="20" uuid="dbfecc12-1c61-41c5-acfe-32d661864400"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="248" y="48" width="95" height="20" uuid="1592355b-0b09-46c9-a7a5-afb36f1a44ba"/>
+				<subreportParameter name="act_name">
+					<subreportParameterExpression><![CDATA[$P{act_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{dir} + "attendance_absent_subreport1.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="186" y="48" width="62" height="20" uuid="5062415f-4981-4911-b16f-d2c53feda328"/>
+				<subreportParameter name="act_name">
+					<subreportParameterExpression><![CDATA[$P{act_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{dir} + "attendance_absent_4th.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="124" y="48" width="62" height="20" uuid="176769d0-085a-4737-ab17-0f73aeef9e08"/>
+				<subreportParameter name="act_name">
+					<subreportParameterExpression><![CDATA[$P{act_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{dir} + "attendance_absent_3rd.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="62" y="48" width="62" height="20" uuid="ff039965-36f0-4342-834e-61a73b78a71b"/>
+				<subreportParameter name="act_name">
+					<subreportParameterExpression><![CDATA[$P{act_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{dir} + "attendance_absent_2nd.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement x="0" y="48" width="62" height="20" uuid="76e2527a-4e94-4952-a482-9c18c0820b3e"/>
+				<subreportParameter name="act_name">
+					<subreportParameterExpression><![CDATA[$P{act_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{dir} + "attendance_absent_1st.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="0" y="8" width="438" height="20" uuid="4e6f1ecb-68b3-4bd1-a496-fe65293a019f"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Summary]]></text>
+			</staticText>
+			<subreport>
+				<reportElement x="343" y="48" width="95" height="20" uuid="eba8a39d-0d50-44fe-868b-18cee62002dc"/>
+				<subreportParameter name="act_name">
+					<subreportParameterExpression><![CDATA[$P{act_name}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{dir} + "attendance_absent_present.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="343" y="28" width="95" height="20" uuid="4804077e-e238-42a4-bd3c-452f21e1ac6a"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Total Present]]></text>
+			</staticText>
+		</band>
+	</lastPageFooter>
+</jasperReport>

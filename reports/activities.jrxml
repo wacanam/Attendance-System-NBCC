@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="event" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="7aaf89e9-22ce-4492-b786-e4a3f7c37387">
+	<property name="ireport.zoom" value="1.331000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="18"/>
+	<parameter name="dir" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="act_name" class="java.lang.String"/>
+	<parameter name="sem_name" class="java.lang.String"/>
+	<parameter name="ay_name" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT a.`activity_Id` 'Act. ID',a.`act_name` 'Activity Name',c.sponsor 'Sponsor',concat(e.semester,'-',d.academic_year )'SY - AY',f.duration 'Duration',concat(DATE_FORMAT(a.`time_started`, '%M %d, %Y'),' ',time_format(a.`time_started`,'%h:%i %p')) 'Date Time Started',concat(DATE_FORMAT(a.`time_ended`, '%M %d, %Y'),' ',time_format(a.`time_ended`,'%h:%i %p')) 'Date Time Ended',g.status 'Status' from tbl_activities as a
+left join tbl_events as b on b.eventID = a.eventID
+LEFT join tbl_event_sponsor as c on c.sponsorID = a.sponsorID
+LEFT JOIN tbl_ay as d on d.ayID = a.Academic_Year
+LEFT join tbl_semester as e on e.semID = a.Semester
+left join tbl_event_duration as f on f.durationID = a.durationID
+left join tbl_status as g on g.statusID = a.statusID]]>
+	</queryString>
+	<field name="Act. ID" class="java.lang.Integer"/>
+	<field name="Activity Name" class="java.lang.String"/>
+	<field name="Sponsor" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SY - AY" class="java.lang.String"/>
+	<field name="Duration" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Date Time Started" class="java.lang.String"/>
+	<field name="Date Time Ended" class="java.lang.String"/>
+	<field name="Status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<title>
+		<band height="65" splitType="Stretch">
+			<image>
+				<reportElement x="694" y="0" width="58" height="64" uuid="154bfb4f-148a-42d5-8e77-a68e201e6c9f"/>
+				<imageExpression><![CDATA[$P{dir}+"images-44.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="58" y="0" width="636" height="26" uuid="01611c53-eea3-48de-ab08-389376f46636"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NORTHERN BUKIDNON COMMUNITY COLLEGE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="26" width="636" height="20" uuid="341f88a4-413b-4109-9459-bc3952d18314"/>
+				<textElement textAlignment="Center" verticalAlignment="Top"/>
+				<text><![CDATA[KIHARE MANOLO FORTICH BUKIDNON]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="58" height="64" uuid="cb92f395-98b9-46cc-b36d-bafbc99ee15d"/>
+				<imageExpression><![CDATA[$P{dir}+"nbcc.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="752" height="33" uuid="15d8f90f-bab0-46ea-9831-6e7fcc71b00d"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Activities Report]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="58" y="43" width="187" height="20" uuid="58878b96-401a-47f2-9017-68b50ad81451"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{act_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="549" y="43" width="57" height="20" uuid="10636993-833e-461d-97d4-26632a736ae9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[AY:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="606" y="43" width="134" height="20" uuid="8cd3bf8f-b0e1-461e-b269-114b8ebeb104"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ay_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="347" y="43" width="50" height="20" uuid="40700f41-6526-43b8-abb1-75ed1d43cffd"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<text><![CDATA[Semester:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="397" y="43" width="134" height="20" uuid="638c2eba-f477-4613-ba19-126c06076526"/>
+				<textElement verticalAlignment="Middle" markup="none">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sem_name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="43" width="58" height="20" uuid="0de54be7-78f5-4ea9-968b-451b86f1c0d4"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Event Name:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="44" height="20" uuid="6a8a040a-466b-4b60-af82-d0bf59149186"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Act. ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="44" y="0" width="156" height="20" uuid="ec931115-0eb8-449f-85cc-5105779bfd16"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Activity Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="200" y="0" width="153" height="20" uuid="bdbc45c2-7c9e-44ea-bcc0-76175901801b"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Sponsor]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="0" width="71" height="20" uuid="7d4db266-2ee4-4096-a14f-03dc038794bd"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[SY - AY]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="424" y="0" width="90" height="20" uuid="9964aa02-ada3-4b0a-a92e-f62cd8ac7c9f"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Duration]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="514" y="0" width="91" height="20" uuid="74d6c38c-2eee-4d79-b3eb-e02c373fb56a"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Date Time Started]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="605" y="0" width="89" height="20" uuid="6b64230a-84fd-4194-99f6-aa7d8ef6dd0d"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Date Time Ended]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="694" y="0" width="58" height="20" uuid="76d0a179-8a47-4c08-a48b-5bd8e3e6ae25"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<font isBold="true"/>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="44" height="20" uuid="02095b6d-f99e-4509-8f74-0ec8d6f5530f"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Act. ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="44" y="0" width="156" height="20" uuid="c23204e8-7704-4dbe-9cfb-f96c6785198c"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Activity Name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="153" height="20" uuid="70804c9d-888c-4da2-8578-c23f84dd7cdc"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Sponsor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="0" width="71" height="20" uuid="15b54555-8c1e-4c74-a71c-8910cff41687"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SY - AY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="424" y="0" width="90" height="20" uuid="030b510b-0f6c-4666-a9e5-07897355b695"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Duration}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="514" y="0" width="91" height="20" uuid="9ad7bc9c-fcdd-4b01-b6b3-4eef9fec5ff3"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Date Time Started}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="605" y="0" width="89" height="20" uuid="8a4e3818-e5e2-4ba0-aeca-32d9aca7dcf1"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Date Time Ended}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="694" y="0" width="58" height="20" uuid="7667f230-f772-40e1-9edb-fd46e4b8e85e"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1">
+					<pen lineWidth="0.25"/>
+					<topPen lineWidth="0.25"/>
+					<leftPen lineWidth="0.25"/>
+					<bottomPen lineWidth="0.25"/>
+					<rightPen lineWidth="0.25"/>
+				</box>
+				<textElement>
+					<paragraph leftIndent="3"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="46" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="0" y="20" width="188" height="20" uuid="656f3c54-2b68-40b1-a95d-8a4bcfd01af5"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="632" y="26" width="80" height="20" uuid="4a243a18-438b-44dd-bf6b-ae66f6a48b93"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="712" y="26" width="40" height="20" uuid="230a094f-1633-4d85-8021-4e0aa436076a"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
