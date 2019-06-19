@@ -1,2 +1,2 @@
 ﻿# Attendance-System-NBCC
-by: # Sittie
+ Author: Sittie
